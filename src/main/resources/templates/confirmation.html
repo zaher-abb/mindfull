@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Ecom</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom justify-content-center">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="nav justify-content-center">
+
+
+
+
+            <li  class="nav-item" sec:authorize="isAuthenticated()">
+                Welcome, <a class="nav-link" sec:authentication="principal.firstname"> </a>
+            </li>
+
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a class="btn btn-outline-light" th:href="@{/User/login}">Login</a>
+            </li>
+            <form
+                    sec:authorize="isAuthenticated()" th:action="@{/User/logout}" method="post">
+                <input   class="btn btn-outline-light" value="Sign Out"/>
+
+            </form>
+
+        </ul>
+
+
+
+
+
+    </div>
+</nav>
+
+<div class="container" >
+    <div class="box-element">
+        <center>
+        <a  class="btn btn-outline-dark" th:href="@{/Order/cancelOrder}">&#x2190; Cancel the Order </a>
+            <form th:action="@{/Order/CouponCode}" th:method="GET">
+                <div class="form-group"> <label>Have coupon?</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control coupon"  name="CouponCode" placeholder="Coupon code"> <span class="input-group-append">
+                        <button class="btn btn-primary btn-apply coupon" type="submit" >Apply</button> </span> </div>
+                </div>
+            </form>
+
+            <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+
+
+     <h5> Adress :</h5>
+        </center>
+        <tr>
+            street : <p th:text="${adr.street}" > </p>
+        </tr>
+        <tr>
+          Haus Number :  <p th:text="${adr.hausNumber}" > </p>
+        </tr>
+        <tr>
+         City :   <p th:text="${adr.city}" > </p>
+        </tr>
+        <tr>
+         Zip :   <p th:text="${adr.zip}" > </p>
+        </tr>
+        <tr>
+            delivered at :   <p th:text="${date}" > </p>
+        </tr>
+        <h3>Total Amount to pay</h3>
+        <tr>
+            <p th:text="${totalprice}"> </p>
+        </tr>
+         <a type="button" th:href="@{/Order/confirmed}" class="btn btn-secondary btn-lg btn-block">confirmed and sending </a>
+        </a>
+</div>
+
+</body>
+</html>

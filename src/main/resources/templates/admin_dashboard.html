@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta name="description" content="Webpage description goes here" />
+    <title>MindfulMinutes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<div class="head-nav">
+    <div class="logo">
+        <img class="logo-img" src="/assets/logo.png" title="logo" href="index.html">
+    </div>
+</div>
+<nav>
+    <ul>
+        <li><a th:href="@{/Steps/addSteps}">
+            <i class="fas fa-home"></i>
+        </a></li>
+        <li><a href="#">
+            <i class="fas fa-bar-chart"></i>
+        </a></li>
+        <li><a th:href="@{/User/allTeamsRank}">
+            <i class="fas fa-flag"></i>
+        </a></li>
+        <li><a th:href="@{/User/showUpdateProfileForm}">
+            <i class="fas fa-user-circle"></i>
+        </a></li>
+
+    </ul>
+</nav>
+<main>
+    <div class="add-steps">
+        <div class="form-container">
+            <form th:action="@{/User/addSteps}" th:object="${stp}" th:method="POST">
+                <h2>Team Rang fuer Admin Ansicht</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <!--                        <th>Anzahl der Teams</th>-->
+                        <th>Anzahl der Schritte</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="s, stat : ${steps}">
+                        <td><span th:text="${stat.index + 1}">Rank</span></td>
+                        <td><span th:text="${s.teamName}">Team</span></td>
+                        <td><span th:text="${s.stepsSum}">Steps</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+    </div>
+
+</main>
+</body>
+</html>

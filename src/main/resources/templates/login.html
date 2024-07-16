@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en">
+<head>
+    <meta name="description" content="Webpage description goes here"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<body>
+<div class="head-nav">
+    <div class="logo">
+        <img class="logo-img" src="/images/logo.png" title="logo" href="/index.html">
+    </div>
+</div>
+
+<section>
+    <div class="signin">
+        <div class="content">
+            <h2>Welcome To MindfulMinutes</h2>
+            <form method="POST" th:action="@{/User/login}">
+                <div class="form">
+                    <div class="inputBox inputBorder">
+                        <input type="email" name="username" required placeholder="Email">
+                    </div>
+                    <div class="inputBox inputBorder">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="links"><a href="#">Reset Password</a></div>
+                    <div class="inputBox">
+                        <input type="submit" value="Log In">
+                    </div>
+                    <div class="create"> <a th:href="@{/User/register}"> Create an Account </a> </div>
+                </div>
+            </form>
+            <!-- show notification on error -->
+            <div th:if="${param.error}">
+                Invalid username or password.
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

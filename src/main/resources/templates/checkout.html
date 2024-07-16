@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Ecom</title>
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom justify-content-center">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+		<ul class="nav justify-content-center">
+
+
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/Order/BackToCart}">CART</a>
+			</li>
+
+			<li  class="nav-item" sec:authorize="isAuthenticated()">
+				Welcome, <a class="nav-link" sec:authentication="principal.firstname"> </a>
+			</li>
+
+
+
+
+			<li sec:authorize="!isAuthenticated()" class="nav-item">
+				<a class="btn btn-outline-light" th:href="@{/User/login}">Login</a>
+			</li>
+			<form sec:authorize="isAuthenticated()" th:action="@{/User/logout}" method="post">
+				<input class="btn btn-outline-light"  type="submit" value="Sign Out"/>
+			</form>
+		</ul>
+
+
+		<div class="nav-item">
+
+			<a th:href="@{/Cart/viewCart}">
+				<img  id="cart-icon" src="/images/cart.png">
+			</a>
+		</div>
+
+
+	</div>
+</nav>
+
+
+<!-------- End  NavBar ---------->
+
+
+
+
+<!-------- Start Adresse Form ---------->
+<div class="row">
+	<div class="col-lg-6">
+		<div class="box-element" id="form-wrapper">
+			<div id="shipping-info">
+				<hr>
+				<p>Please choose your order address:</p>
+				<hr>
+				<a  class="btn btn-secondary" th:href="@{/Order/userSameAddress}"> use your same Address</a>
+				<hr>
+				<p>New address:</p>
+				<hr>
+				<form th:action="@{addAdresstoOrder}"  th:object="${adress}"  method="POST">
+					<div class="form-field">
+						<input class="form-control" type="text"   name="street" placeholder="Street.." th:field="*{street}" required >
+						<div class="ext text-danger"  th:if="${#fields.hasErrors('street')}" th:errors="*{street}" ></div>
+					</div>
+
+					<div class="form-field">
+						<input class="form-control" type="number"  name="hausNumber" placeholder="Haus Number.." th:field="*{hausNumber}" required >
+						<div class="ext text-danger"  th:if="${#fields.hasErrors('hausNumber')}" th:errors="*{hausNumber}" ></div>
+					</div>
+
+					<div class="form-field">
+						<input class="form-control" type="text"  name="city" placeholder="City.." th:field="*{city}" required >
+						<div class="ext text-danger"  th:if="${#fields.hasErrors('city')}" th:errors="*{city}" ></div>
+					</div>
+
+					<div class="form-field">
+						<input class="form-control" type="number" name="zip" placeholder="Zip code.." th:field="*{zip}" required >
+						<div class="ext text-danger"  th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}" ></div>
+					</div>
+					<div class="form-field">
+						<input class="form-control" type="text"  name="country" placeholder="Country.."th:field="*{country}" required >
+						<div class="ext text-danger"  th:if="${#fields.hasErrors('country')}" th:errors="*{country}" ></div>
+					</div>
+			</div>
+
+			<hr>
+			<input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+			</form>
+		</div>
+
+		<br>
+		<div class="box-element hidden" id="payment-info">
+			<small>Paypal Options</small>
+		</div>
+
+	</div>
+
+	<!-------- Start Order Form ---------->
+
+
+	<div class="col-lg-6">
+		<p class="box-element">
+			<a  class="btn btn-outline-dark" th:href="@{/Order/BackToCart}" >&#x2190; Back to Cart</a>
+		<hr>
+		<h3>Total Amount : </h3>
+		<p th:text="${totalAmount}"></p>
+		<hr>
+		<tr th:each="orderiteam : ${orderIteams}">
+			<div class="cart-row">
+				<div style="flex:2"><img class="row-image" th:src="${orderiteam.product.pictureUrl}"></div>
+				<div style="flex:2"> <a type="button" class="btn btn-danger"  th:href="@{/Order/DeleteSingleOrderIteam(Pid=${orderiteam.product.id})}" >Remove</a></div>
+				<div style="flex:2"><p th:text="${orderiteam.product.price}"> </p></div>
+				<div style="flex:1"><p th:text="${orderiteam.quantity}" > </pth:text>  </p></div>
+				<div style="flex:1"><p th:text="${orderiteam.totalamountSingelIteam}" > </pth:text>  </p></div>
+			</div>
+		</tr>
+	</div>
+</div>
+</div>

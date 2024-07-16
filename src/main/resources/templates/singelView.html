@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Ecom</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="/css/st.css" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+
+    <nav class="navbar navbar-expand-lg navbar-custom justify-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="nav justify-content-center">
+
+
+                <li>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Categories</a>
+                        <div class="dropdown-menu">
+                            <a th:href="@{/Product/laptops}" class="dropdown-item">Laptops</a>
+                            <a th:href="@{/Product/mobile}" class="dropdown-item">mobile</a>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/Product/Home}">STORE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/Cart/viewCart}">CART</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/Contact/ContactUs} ">CONTACT US</a>
+                </li>
+
+
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    Welcome, <a class="nav-link" th:href="@{/User/showUserProfile}"
+                                sec:authentication="principal.firstname"> </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <form th:action="@{/Product/search }  "
+                          method="GET" class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search"
+                               aria-label="Search" required>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit ">Search</button>
+                    </form>
+                </li>
+
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="btn btn-outline-light" th:href="@{/User/login}">Login</a>
+                </li>
+                <form sec:authorize="isAuthenticated()" th:action="@{/User/logout}" method="post">
+                    <input class="btn btn-outline-light" type="submit" value="Sign Out"/>
+                </form>
+
+            </ul>
+
+
+            <div class="nav-item">
+
+                <a th:href="@{/Cart/viewCart}">
+                    <img id="cart-icon" src="/images/cart.png">
+                </a>
+            </div>
+
+
+        </div>
+    </nav>
+
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img th:src="${p1.pictureUrl}" /></div>
+                    </div>
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title"> <p th:text="${p1.name}"></p> </h3>
+
+
+                    <h4 class="price">current price: <span  th:text="${p1.price}"> </span></h4>
+                    <p class="product-description" th:text="${p1.shortDescreption}" > </p>
+                    <p class="product-description" th:text="${p1.longDescreption}" > </p>
+                    <div class="action">
+                        <a class="add-to-cart btn btn-default" th:href="@{/Cart/addToCart(id=${p1.id})}" type="button">add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+  <meta name="description" content="Webpage description goes here" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<body>
+
+    <div class="head-nav">
+        <div class="logo">
+            <img class="logo-img" src="/images/logo.png" title="logo" href="/index.html">
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><a th:href="@{/Steps/addSteps}">
+                <i class="fas fa-home"></i>
+            </a></li>
+            <li><a href="#">
+                <i class="fas fa-bar-chart"></i>
+            </a></li>
+            <li><a th:href="@{/User/allTeamsRank}">
+                <i class="fas fa-flag"></i>
+            </a></li>
+            <li><a th:href="@{/User/showUpdateProfileForm}">
+                <i class="fas fa-user-circle"></i>
+            </a></li>
+
+        </ul>
+    </nav>
+    
+    <section>
+        <div class="profile"> 
+            <div class="content"> 
+                <div class="form"> 
+                    <form th:action="@{/User/updateUser}" th:object="${user}" th:method="POST"  enctype="multipart/form-data" >
+                        <div class="upload">
+                            <img src="/images/noprofil.jpg" width = 100 height = 100 alt="">
+                            <div class="round">
+                                <input type="file" name="image" accept="image/png, image/jpg , image/jpeg" class="custom-file-input"
+                                       id="customFile" required >
+                                <i class = "fa fa-plus" style = "color: #606060"></i>
+                            </div>
+                        </div>
+                          <div class="links"> <a href="#">Edit Profile</a> </div> 
+
+
+                          <div class="content"> 
+                            <div class="form"> 
+                                <div class="flexbox">
+                                    <div class="inputBox inputBorder"> 
+                                        <input type="text" required placeholder="First Name" >
+                                    </div> 
+                                    <div class="inputBox inputBorder"> 
+                                        <input type="text" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                                <div class="flexbox">
+
+                                    <div class="inputBox">
+                                        <div class="inputBox inputBorder">
+                                            <select  title ="name" th:field="*{teamName}" required>
+                                                <option value="">Team </option>
+                                                <option value="Berlin">Berlin</option>
+                                                <option value="Brandenburg">Brandenburg</option>
+                                                <option value="Potsdam">Potsdam</option>
+                                                <option value="Frankfurt (Oder)">Frankfurt (Oder)</option>
+                                                <option value="Cottbus">Cottbus</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="inputBox-Password inputBorder">
+                                        <input type="password"  placeholder="password"  name="password" th:field="*{password}" required>
+                                    </div>
+
+                                </div>
+
+                                <div class="inputBox-Password inputBorder"  sec:authorize="hasRole('USER')" >
+                                    <input type="number" placeholder="target" name="target" th:field="*{stepsTarget}" required>
+                                </div>
+                                <div class="inputBox saveAccount">
+                                    <input type="submit" value="Save Account"> 
+                                </div>
+                        </div>
+                          </div>
+                    </form>
+
+
+
+                </div> 
+            </div> 
+        </div> 
+    </section>
+
+</body>
+</html>

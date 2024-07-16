@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Ecom</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom justify-content-center">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="nav justify-content-center">
+
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/Admin/viewAdminPage}">All Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/Admin/viewAddProductPage}">Add Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/Admin/addUser}">Add User</a>
+            </li>
+
+
+            <li  class="nav-item" sec:authorize="isAuthenticated()">
+                Welcome, <a class="nav-link" sec:authentication="principal.firstname"> </a>
+            </li>
+
+
+
+            <li class="nav-item">
+                <form   th:action="@{/Product/search }  "
+                        method="GET"  class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit ">Search </button>
+                </form>
+            </li>
+
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a class="btn btn-outline-light" th:href="@{/User/login}">Login</a>
+            </li>
+            <form sec:authorize="isAuthenticated()" th:action="@{/User/logout}" method="post">
+                <input class="btn btn-outline-light"  type="submit" value="Sign Out"/>
+            </form>
+
+        </ul>
+
+
+
+    </div>
+</nav>
+
+
+<div class="card">
+    <div class="card-header">
+        <p class="h4 mb-2 text-center">Add Product</p>
+    </div>
+    <a  class="btn btn-outline-dark" th:href="@{/Admin/viewAdminPage}">&#x2190; View Admin Page</a>
+    <div class="card-body">
+        <form class="text-center border border-light p-5" th:action="@{/Admin/AddProduct}"
+              th:object="${p1}" method="Post"   enctype="multipart/form-data">
+
+            <input type="number"  name="id" id="id" th:field="*{id}" hidden="hidden" >
+            <input type="text" name="pname" id="name" th:field="*{name}" class="form-control mb-4"
+                   placeholder="Product Name">
+
+            <input type="text" name="price" id="price" th:field="*{price}"  class="form-control mb-4"
+                   placeholder="Product Price">
+
+            <label for="categorie">Choose a categorie:</label>
+            <select name="categorie" id="categorie" class="form-control mb-4" th:field="*{categorie}">
+                <option value="Laptops">Laptops</option>
+                <option value="Mobile">Mobile</option>
+            </select>
+
+            <textarea class="form-control mb-4" id="desc" th:field="*{shortDescreption}"  name="desc"
+                      placeholder="Product Description">Product Description
+                                 </textarea>
+
+            <textarea class="form-control mb-4" id="longDesc" th:field="*{longDescreption}"  name="longDesc"
+                      placeholder="Product Description">Product Details
+                                 </textarea>
+
+
+            <div class="custom-file mb-4">
+                <input type="file" name="image" accept="image/png, image/jpeg" class="custom-file-input"
+                       id="customFile" required >
+                <label class="custom-file-label" for="customFile">Product Image</label>
+            </div>
+            <button class="btn btn-info btn-block" type="submit">add</button>
+        </form>
+    </div>
+</div>
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+</html>

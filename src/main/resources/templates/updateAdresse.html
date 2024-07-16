@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/profilcss.css">
+</head>
+<body>
+
+<ul>
+    <li><a  th:href="@{/User/showUserProfile}">My Profile</a></li>
+    <li><a  th:href="@{/User/showUpdateProfileForm}">Update</a></li>
+    <li><a class="active" th:href="@{/User/showUpdateAdressForm}">Address</a></li>
+    <li><a th:href="@{/Product/Home}">Back to Store</a></li>
+</ul>
+
+ int zip
+<div class="wrapper">
+    <div class="left">
+        <h4> Update Profile Address Details </h4>
+    </div>
+    <div   class="right">
+        <form th:action="@{/User/addAdresstoUser}" th:object="${adr}" th:method="POST">
+
+            <div class="info">
+                <h4>Street</h4>
+                <div class="info_data">
+                    <div class="data">
+                        <input type="text"  th:field="*{street}" name="street" required>
+                        <div class="ext text-danger"  th:if="${#fields.hasErrors('street')}" th:errors="*{street}" ></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="info">
+                <h4>Haus Number</h4>
+                <div class="info_data">
+                    <div class="data">
+                        <input type="text" name="lastname" th:field="*{hausNumber}" required>
+                        <div class="ext text-danger"  th:if="${#fields.hasErrors('hausNumber')}" th:errors="*{hausNumber}" ></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <h4>Zip</h4>
+                <div class="projects_data">
+                    <div class="data">
+                        <input type="number" name="zip" th:field="*{zip}" required>
+                        <div class="ext text-danger"  th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}" ></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="projects">
+                <h4>City</h4>
+                <div class="projects_data">
+                    <div class="data">
+                        <input type="text" name="city" th:field="*{city}" required>
+                        <div class="ext text-danger"  th:if="${#fields.hasErrors('city')}" th:errors="*{city}" ></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <h4>Country</h4>
+                <div class="projects_data">
+                    <div class="data">
+                        <input type="text" name="country" th:field="*{country}" required>
+                        <div class="ext text-danger"  th:if="${#fields.hasErrors('country')}" th:errors="*{country}" ></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-3 login_container">
+                <input class="btn login_btn" type="submit" value="save">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

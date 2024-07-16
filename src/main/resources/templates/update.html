@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/profilcss.css">
+</head>
+<body>
+
+<ul>
+    <li><a  th:href="@{/User/showUserProfile}">My Profile</a></li>
+    <li><a class="active" th:href="@{/User/showUpdateProfileForm}">Update</a></li>
+    <li><a th:href="@{/User/showUpdateAdressForm}">Address</a></li>
+    <li><a th:href="@{/Product/Home}">Back to Store</a></li>
+</ul>
+
+  
+  <div class="wrapper">
+    <div class="left">
+        <h4> Update Profile Details </h4>
+    </div>
+      <div   class="right">
+      <form th:action="@{/User/updateUser}" th:object="${user}" th:method="POST"  >
+
+        <div class="info">
+            <h4>Update FirstName</h4>
+            <div class="info_data">
+                 <div class="data">
+                     <input type="text"  th:field="*{firstName}" name="firstname" required>
+                     <div class="ext text-danger"  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></div>
+                 </div>
+
+            </div>
+        </div>
+
+
+
+          <div class="info">
+              <h4>Update LastName</h4>
+              <div class="info_data">
+                  <div class="data">
+                      <input type="text" name="lastname" th:field="*{lastName}" required>
+                      <div class="ext text-danger"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" ></div>
+                  </div>
+
+              </div>
+          </div>
+
+
+		<div class="projects">
+            <h4>Update Password</h4>
+            <div class="projects_data">
+                 <div class="data">
+                     <input type="password" name="password" th:field="*{password}" required>
+                     <div class="ext text-danger"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></div>
+                 </div>
+
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3 login_container">
+            <input class="btn login_btn" type="submit" value="save">
+        </div>
+
+
+      </form>
+  </div>
+</div>
+
+</body>
+</html>
