@@ -4,6 +4,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import th.project.enterprise.Entity.*;
 import th.project.enterprise.Service.*;
 
@@ -150,7 +151,12 @@ public class UserController {
         emailService.emailAlertToSubmitSteps(userService.getAllUsersWhoDoesNotSubmitSteps(date), date);
     }
 
+    @GetMapping("/test")
+    public void test(Principal principal) {
+        User user1 = userService.findByEmail(principal.getName());
 
+      StepsSummaryDTO dto = stepsService.getStepsSummaryForUser(user1.getId());
+    }
 
     @GetMapping("/showUpdateProfileForm")
     public String showUpdateProfileForm(Model model, HttpServletRequest request) {
@@ -164,7 +170,7 @@ public class UserController {
 
 
     @PostMapping("/updateUser")
-    public String updateUser(@Param("image") MultipartFile image,  @Valid User user, Principal principal, BindingResult result, Model model) throws IOException {
+    public String updateUser(@Param("image") MultipartFile image, @Valid User user, Principal principal, BindingResult result, Model model, RedirectAttributes redirectAttributes) throws IOException {
         if (result.hasErrors()) {
             return "update";
         }
@@ -176,7 +182,14 @@ public class UserController {
         model.addAttribute("user1", user1);
         if (user1 == null) {
             return "redirect:/User/logout";
-        } else {
+        }
+        long maxFileSize = 10485760;
+
+        if (image.getSize() > maxFileSize) {
+            redirectAttributes.addFlashAttribute("message", "File size should not exceed 10MB");
+            return "redirect:/User/showUpdateProfileForm";
+        }
+        else {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
             user1.setProfilePictureUrl("/images/" + fileName);
 
@@ -197,11 +210,11 @@ public class UserController {
     }
 
     @GetMapping("/showProfileDetails")
-    public String showProfileDetails(Model model) {
+    public String showProfileDetails(Model model,Principal principal) {
+        User user1 = userService.findByEmail(principal.getName());
+        model.addAttribute("user", user1);
 
-        model.addAttribute("user", new User());
-
-        return "profileDetails";
+        return "profileUser";
     }
 
 }

@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+*{
+    margin:0;
+    padding:0;
+    outline:none;
+    border:none;
+    text-decoration:none;
+    box-sizing: border-box;
+    font-family:"Popping",sans-serif;
+}
+
+body{
+    background: #dfe9f5;
+}
+
+.head-nav{
+    width:100%;
+    height: 4rem;
+    background:#fff;
+}
+
+.logo{
+    display: flex;
+    text-align: end;
+    justify-content: flex-end;
+}
+
+.logo img{
+    width:100px;
+    height:45px;
+    padding-top:0.2rem;
+    margin:0;
+}
+
+nav{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    height:100%;
+    background:#fff;
+    width:90px;
+    overflow:hidden;
+    transition:width 0.2s linear;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul{
+    flex-direction: column;
+    justify-content: space-evenly;
+    display: flex;
+    height: 80%;
+}
+
+a{
+    position:relative;
+    color:rgb(85,83,83);
+    font-size:14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:10px;
+}
+
+.fas{
+    position:relative;
+    width:70px;
+    height:40px;
+    top:14px;
+    font-size:20px;
+    text-align:center;
+}
+
+.nav-item{
+    position:relative;
+    top:12px;
+    margin-left:10px;
+}
+
+a:hover{
+    background:#eee;
+}
+
+/* Form Section */
+.add-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: calc(100vh - 4rem); */
+    padding: 2rem;
+}
+
+.form-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 72rem;
+    /* max-width: 400px; */
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.inputBorder{
+    margin-bottom: 2rem;
+}
+
+.inputBox button {
+    margin-top: 2.5rem;
+}
+
+.inputBox label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.inputBox button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #8D6CFA;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.inputBox button:hover {
+    background: #7b5ce6;
+}
+
+.shoes {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.shoes img {
+    width: 100px;
+    height: auto;
+}
+
+.flexbox{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flexbox p{
+    text-align: left;
+    padding-bottom: 5rem;
+}
+
+.flexbox label{
+    text-align: left;
+}
+
+.flexbox img{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1rem;
+    }
+}
+
+/* CSS BUTTON GROUPS */
+
+
+.multi-button{
+    margin-bottom: 3rem;
+  }
+  
+  .multi-button_button{
+    font-family:"Popping",sans-serif;
+    font-size: 15px;
+    /* border: none; */
+    cursor: pointer;
+    padding: 14px 14px;
+    color: black;
+    /* transition: background 0.2s ease-in-out; */
+    /* box-shadow: 0 5px 10px #11111150;  */
+  }
+
+  .flexbox-buttons{
+    display:flex;
+    justify-content: center;
+  }
+  
+  .multi-button_button:focus{
+    background-color: #8D6CFA;
+  }
+  
+
+  .tag{
+    border-radius: 5px 0 0 5px;
+    box-shadow: 4px 6px 8px #11111150; 
+  }
+
+  .woche{
+    box-shadow: 4px 6px 8px #11111150;
+  }
+  
+  .monat{
+    border-radius: 0 5px 5px 0;
+    box-shadow: 4px 4px 6px #11111150; 
+  }
+  
+  /* .multi-button_button:first-child,
+  .multi-button_button:last-child{
+    transition: none;
+    position: relative;
+    overflow: hidden;
+  } */
+  
+  
+  .multi-button_button:first-child::after,
+  .multi-button_button:last-child::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    background-color: var(--complement);
+    top: 0;
+  }
+  
+  .multi-button_button:first-child::after{
+    right: -20%;
+    border-radius: 50% 0 0 50%;
+    transition: right ease-in-out 0.2s;
+  }
+  
+  .multi-button_button:last-child::after{
+    left: -20%;
+    border-radius: 0 50% 50% 0;
+    transition: left ease-in-out 0.2s;
+  }
+  
+  .multi-button_button:first-child:hover::after{
+    right: 0;
+  }
+  
+  .multi-button_button:last-child:hover::after{
+    left: 0;
+  }
+
+/* CHAAART */
+
+.chart{
+    width: 600px;
+    height: 300px;
+    display: block;
+  }
+  
+  .numbers{
+    color: black;
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 100%;
+    display: inline-block;
+    /* float: left; */
+  }
+  
+  .numbers li{
+    list-style: none;
+    height: 4rem;
+    position: relative;
+    bottom: 3rem;
+  }
+  
+  .numbers span{
+    font-size: 12px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+  }
+  
+  .bars{
+    color: black;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 500px;
+    height: 300px;
+    border-left:black 1px solid;
+    border-bottom:black 1px solid;
+
+  }
+  
+  .bars li{
+    display: table-cell;
+    width: 100px;
+    height: 300px;
+    position: relative;
+  }
+  
+  .bars span{
+    width: 100%;
+    position: absolute;
+    bottom: -30px;
+    text-align: center;
+  }
+  
+  .bars .bar{
+    display: block;
+    background: #D9D9D9;
+    width: 1.7rem;
+    position: absolute;
+    bottom: 0;
+    margin-left: 20px;
+    text-align: center;
+    transition: 0.5s;
+    transition-property: background, box-shadow;
+  }
+  
+  .bars .bar:hover{
+    background: #55EFC4;
+    box-shadow: 0 0 10px 0 rgba(85, 239, 196, 0.5);
+    cursor: pointer;
+  }
+  
+  .bars .bar:before{
+    color: #fff;
+    content: attr(data-percentage) '%';
+    position: relative;
+    bottom: 20px;
+  }
+
+

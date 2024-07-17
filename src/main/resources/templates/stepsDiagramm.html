@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta name="description" content="Webpage description goes here" />
+    <title>MindfulMinutes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="stepsDiagramm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<div class="head-nav">
+    <div class="logo">
+        <img class="logo-img" src="/assets/logo.png" title="logo" href="index.html">
+    </div>
+</div>
+<nav>
+    <ul>
+        <li><a th:href="@{/Steps/addSteps}">
+            <i class="fas fa-home"></i>
+        </a></li>
+        <li><a href="#">
+            <i class="fas fa-bar-chart"></i>
+        </a></li>
+        <li><a href="#">
+            <i class="fas fa-flag"></i>
+        </a></li>
+        <li><a href="/login.html">
+            <i class="fas fa-user-circle"></i>
+        </a></li>
+    </ul>
+</nav>
+<main>
+    <div class="add-steps">
+        <div class="form-container">
+            <form th:action="@{/User/addSteps}" th:object="${stp}" th:method="POST">
+                <div class="flexbox">
+                        <div class="diagram">
+                            <h2>Sie haben Ihr Ziel für diese Woche erreicht </h2>
+                            <div class="multi-button flexbox-buttons">
+                                <div><button class="multi-button_button tag">Tag</button></div>
+                                <div><button class="multi-button_button woche">Woche</button></div>
+                                <div><button class="multi-button_button monat">Monat</button></div>
+                              </div>
+                            <div class="chart">
+                                <ul class="numbers">
+                                  <li><span>50.000</span></li>
+                                  <li><span>40.000</span></li>
+                                  <li><span>30.000</span></li>
+                                  <li><span>20.000</span></li>
+                                  <li><span>10.000</span></li>
+
+                                </ul>
+                                <ul class="bars">
+                                  <li><div class="bar" data-percentage="50"></div><span>JAN</span></li>
+                                  <li><div class="bar" data-percentage="30"></div><span>FEB</span></li>
+                                  <li><div class="bar" data-percentage="60"></div><span>MÄR</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>APR</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>MAI</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>JUN</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>JUL</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>AUG</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>SEP</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>OKT</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>NOV</span></li>
+                                  <li><div class="bar" data-percentage="100"></div><span>DEZ</span></li>
+                                </ul>
+                              </div>
+                              <!--chart end-->
+                            <!-- <div class="inputBox">
+                                <button type="submit">Add Steps</button>
+                            </div> -->
+                        </div>
+                        <div>
+                            <img class="" src="/assets/Illustration.png" title="logo" href="#">
+                        </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+          $('.bars li .bar').each(function(key, bar){
+            var percentage = $(this).data('percentage');
+            $(this).animate({
+              'height' : percentage + '%'
+            },1000);
+          });
+        });
+        </script>
+
+</main>
+</body>
+</html>

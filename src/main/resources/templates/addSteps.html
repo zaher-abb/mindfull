@@ -8,7 +8,33 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="/css/addSteps.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const navLinks = document.querySelectorAll('nav a');
+            const borderLinks = document.querySelectorAll('nav li');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            borderLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    borderLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+        });
+    </script>
+
 </head>
 <body>
 <div class="head-nav">
@@ -19,36 +45,50 @@
 <nav>
     <ul>
         <li><a th:href="@{/Steps/addSteps}">
-            <i class="fas fa-home"></i>
+            <span class="material-symbols-outlined">
+                home
+            </span>
         </a></li>
         <li><a href="#">
-            <i class="fas fa-bar-chart"></i>
+            <span class="material-symbols-outlined">
+                equalizer
+            </span>
         </a></li>
         <li><a th:href="@{/User/allTeamsRank}">
-            <i class="fas fa-flag"></i>
+            <span class="material-symbols-outlined">
+                flag
+            </span>
         </a></li>
         <li><a th:href="@{/User/showUpdateProfileForm}">
-            <i class="fas fa-user-circle"></i>
+            <span class="material-symbols-outlined">
+                person
+            </span>
         </a></li>
     </ul>
 </nav>
 <main>
     <section class="add-steps">
-        <div class="form-container">
-            <h2>Add Steps</h2>
-            <form th:action="@{/Steps/addSteps}" th:object="${stp}" th:method="POST">
-                <div class="inputBox inputBorder">
-                    <label for="steps">Steps</label>
-                    <input type="number" id="steps" th:field="*{steps_number}" required>
+        <div class="form-container flexbox">
+            <div>
+                <h2>Neuer Tag, neue Herausforderung</h2>
+                <p>Fügen Sie Ihre Schritte für heute hinzu</p>
+                <form th:action="@{/Steps/addSteps}" th:object="${stp}" th:method="POST">
+                    <div class="inputBox inputBorder">
+                        <label for="steps">Schritte</label>
+                        <input type="number" id="steps" th:field="*{steps_number}" required>
+                    </div>
+                    <div class="inputBox inputBorder">
+                        <label for="date">Datum</label>
+                        <input type="date" id="date" value="2024-07-15" min="2021-02-01" max="2029-02-28" th:field="*{stringDate}" required>
+                    </div>
+                    <div class="inputBox">
+                        <button type="submit">Schritte hinzufügen</button>
+                    </div>
+            </div>
+                <div class="shoes">
+                    <img src="/images/steps.png" title="logo" href="#">
                 </div>
-                <div class="inputBox inputBorder">
-                    <label for="date">Date</label>
-                    <input type="date" id="date" th:field="*{stringDate}" required>
-                </div>
-                <div class="inputBox">
-                    <button type="submit">Add Steps</button>
-                </div>
-            </form>
+                </form>
         </div>
 
     </section>

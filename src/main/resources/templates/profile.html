@@ -2,69 +2,106 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-  <meta name="description" content="Webpage description goes here" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="">
-  <link rel="stylesheet" href="/css/profile.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <meta name="description" content="Webpage description goes here" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const navLinks = document.querySelectorAll('nav a');
+            const borderLinks = document.querySelectorAll('nav li');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            borderLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    borderLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+        });
+    </script>
+
 </head>
 
 <body>
 
-    <div class="head-nav">
-        <div class="logo">
-            <img class="logo-img" src="/images/logo.png" title="logo" href="/index.html">
-        </div>
+<div class="head-nav">
+    <div class="logo">
+        <img class="logo-img" src="/images/logo.png" title="logo" href="/index.html">
     </div>
-    <nav>
-        <ul>
-            <li><a th:href="@{/Steps/addSteps}">
-                <i class="fas fa-home"></i>
-            </a></li>
-            <li><a href="#">
-                <i class="fas fa-bar-chart"></i>
-            </a></li>
-            <li><a th:href="@{/User/allTeamsRank}">
-                <i class="fas fa-flag"></i>
-            </a></li>
-            <li><a th:href="@{/User/showUpdateProfileForm}">
-                <i class="fas fa-user-circle"></i>
-            </a></li>
+</div>
+<nav>
+    <ul>
+        <li><a th:href="@{/Steps/addSteps}">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+        </a></li>
+        <li><a href="#">
+                <span class="material-symbols-outlined">
+                    equalizer
+                </span>
+        </a></li>
+        <li><a th:href="@{/User/allTeamsRank}">
+                <span class="material-symbols-outlined">
+                    flag
+                </span>
+        </a></li>
+        <li><a th:href="@{/User/showUpdateProfileForm}">
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+        </a></li>
+    </ul>
+</nav>
 
-        </ul>
-    </nav>
-    
+<main>
     <section>
-        <div class="profile"> 
-            <div class="content"> 
-                <div class="form"> 
+        <div class="profile">
+            <div class="content">
+                <div class="form">
                     <form th:action="@{/User/updateUser}" th:object="${user}" th:method="POST"  enctype="multipart/form-data" >
                         <div class="upload">
                             <img src="/images/noprofil.jpg" width = 100 height = 100 alt="">
                             <div class="round">
-                                <input type="file" name="image" accept="image/png, image/jpg , image/jpeg" class="custom-file-input"
+                                <input type="file" title="upload" name="image" accept="image/png, image/jpg , image/jpeg" class="custom-file-input"
                                        id="customFile" required >
                                 <i class = "fa fa-plus" style = "color: #606060"></i>
                             </div>
                         </div>
-                          <div class="links"> <a href="#">Edit Profile</a> </div> 
+                        <div class="links"> <a href="#">Profil bearbeiten</a> </div>
 
 
-                          <div class="content"> 
-                            <div class="form"> 
+                        <div class="content">
+                            <div class="form">
                                 <div class="flexbox">
-                                    <div class="inputBox inputBorder"> 
-                                        <input type="text" required placeholder="First Name" >
-                                    </div> 
-                                    <div class="inputBox inputBorder"> 
-                                        <input type="text" placeholder="Last Name" required>
+                                    <div class="inputBox inputBorder">
+                                        <label for="vorname">Vorname</label>
+                                        <input type="text" title="Vorname" required >
+                                    </div>
+                                    <div class="inputBox inputBorder">
+                                        <label for="nachname">Nachname</label>
+                                        <input type="text" title="Nachname" required>
                                     </div>
                                 </div>
                                 <div class="flexbox">
 
                                     <div class="inputBox">
                                         <div class="inputBox inputBorder">
+                                            <label for="team">Team</label>
                                             <select  title ="name" th:field="*{teamName}" required>
                                                 <option value="">Team </option>
                                                 <option value="Berlin">Berlin</option>
@@ -75,28 +112,29 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="inputBox-Password inputBorder">
-                                        <input type="password"  placeholder="password"  name="password" th:field="*{password}" required>
+                                    <div class="inputBox inputBorder">
+                                        <label>Passwort</label>
+                                        <input type="password" title="Passwort"  name="Passwort" th:field="*{password}" required>
                                     </div>
-
                                 </div>
 
-                                <div class="inputBox-Password inputBorder"  sec:authorize="hasRole('USER')" >
-                                    <input type="number" placeholder="target" name="target" th:field="*{stepsTarget}" required>
+                                <div class="inputBox inputBorder responsiv"  sec:authorize="hasRole('USER')" >
+                                    <label>Ziel</label>
+                                    <input type="number" title="Ziel" name="target" th:field="*{stepsTarget}" required>
                                 </div>
-                                <div class="inputBox saveAccount">
-                                    <input type="submit" value="Save Account"> 
+                                <div class="saveAccount">
+                                    <input type="submit" value="Konto Speichern">
                                 </div>
+                            </div>
                         </div>
-                          </div>
                     </form>
 
 
 
-                </div> 
-            </div> 
-        </div> 
+                </div>
+            </div>
+        </div>
     </section>
-
+</main>
 </body>
 </html>

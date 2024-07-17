@@ -13,9 +13,8 @@
 body{
     background: #dfe9f5;
 }
-.inputBox-Password input::placeholder {
-    font-size: 1rem;
-}
+
+
 .head-nav{
     width:100%;
     height: 4rem;
@@ -35,28 +34,18 @@ body{
     margin:0;
 }
 
-nav{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    height:100%;
-    background:#fff;
-    width:90px;
-    overflow:hidden;
-    transition:width 0.2s linear;
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 ul{
     flex-direction: column;
-    justify-content: space-evenly;
     display: flex;
-    height: 80%;
+    height: 100%;
+    justify-content: space-around;
 }
+
+
+a.active .material-symbols-outlined {
+    color: #8D6CFA;
+}
+
 
 a{
     position:relative;
@@ -66,7 +55,6 @@ a{
     align-items: center;
     justify-content: center;
     padding:10px;
-    margin-bottom: 5rem;
 }
 
 .fas{
@@ -84,81 +72,154 @@ a{
     margin-left:10px;
 }
 
-a:hover{
-    background:#eee;
+
+@media (min-width: 431px){
+    nav{
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        height:100%;
+        background:#fff;
+        width:6rem;
+        overflow:hidden;
+        transition:width 0.2s linear;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    li.active{
+        border-right: 5px solid #8D6CFA;
+    }
+}
+
+
+@media (max-width: 430px) {
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        padding-bottom: 4rem;
+    }
+
+    .head-nav{
+        width:100%;
+        height: 4rem;
+        background: #FFFFFF;
+    }
+
+    nav {
+        background: #FFFFFF;
+        position: fixed;
+        width: 100%;
+        height:4rem;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        align-items: center;
+        bottom: 0;
+        left: 0;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        width:100%
+    }
+
+
+    nav ul li {
+        display: flex;
+        width:8rem;
+        justify-content: center;
+
+    }
+
+    nav ul li a {
+        color: #333;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li a .material-symbols-outlined {
+        font-size: 24px;
+    }
+
+    li.active{
+        border-top: 5px solid #8D6CFA;
+    }
+
 }
 
 /* PROFILE PAGEE */
 
-section 
-{
-  position: absolute;
-  width: 100vw;
-  /* height: 100vh; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-  flex-wrap: wrap;
-  /* overflow: hidden; */
+main{
+    margin-left:6rem;
 }
 
-section .profile
-{
-    width: 93rem;
-    height: 45rem;
-    background: #FFFFFF;
-    z-index: 1000;
+section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 2rem;
+}
+
+
+.profile {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85rem;
+    height:45rem;
+    text-align: center;
+}
+
+section .profile .content
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+
+section .profile .content h2
+{
+    font-size: 1.2em;
+}
+
+section .content .form .inputBox input,  section .profile .content .form .inputBox select
+{
+    position: relative;
+    width: 18rem;
+    background: #FFFFFF;
+    outline: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    border: 1px solid #555;
     border-radius: 4px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 3);
-    margin-top:3rem;
-}
-section .profile .content 
-{
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 40px;
+    font-weight: 500;
+    height: 2.5rem;
 }
 
-section .profile .content h2 
-{
-  font-size: 1.2em;
-}
-section .profile .content .form 
-{
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  width: 50rem;
+
+.inputBox label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+    text-align: start;
+    margin-top:2rem;
 }
 
-/* section .profile .content .form .inputBox
-{
-  position: relative;
-  width: 100%;
-} */
-
-section .profile .content .form .inputBox input,  section .profile .content .form .inputBox select
-{
-  position: relative;
-  width: 18rem;
-  background: #FFFFFF;
-  outline: none;
-  border-radius: 5px;
-  padding: 25px 10px 7.5px;
-  border-color: black;
-  color: black;
-  font-weight: 500;
-  font-size: 1em;
-}
 
 .inputBox-Password{
     position: relative;
@@ -175,38 +236,21 @@ section .profile .content .form .inputBox input,  section .profile .content .for
     border-radius: 5px;
 }
 
-
-.inputBorder{
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
-
-
-section .profile .content .form .inputBox i 
+section .profile .content .form .inputBox i
 {
-  position: absolute;
-  left: 0;
-  padding: 15px 10px;
-  font-style: normal;
-  color: #aaa;
-  transition: 0.5s;
-  pointer-events: none;
+    position: absolute;
+    left: 0;
+    padding: 15px 10px;
+    font-style: normal;
+    color: #aaa;
+    transition: 0.5s;
+    pointer-events: none;
 }
 
-.profile .content .form .inputBox input[type="submit"]
-{
-  padding: 10px;
-  background: #8D6CFA;
-  color: #eee;
-  font-weight: 600;
-  font-size: 1.35em;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-}
 
 .links{
     display: flex;
+    margin-top: 1rem;
 }
 
 .create, .links{
@@ -215,8 +259,105 @@ section .profile .content .form .inputBox i
 
 input[type="submit"]:active
 {
-  opacity: 0.6;
+    opacity: 0.6;
 }
+
+.saveAccount{
+    display: flex;
+    justify-content: center;
+    margin-top:5rem;
+}
+
+.saveAccount input{
+    width: 18rem;
+    outline: none;
+    border-radius: 4px;
+    height: 2.5rem;
+    padding: 0.1rem;
+    background: #8D6CFA;
+    color: #eee;
+    font-weight: 600;
+    font-size: 1.35em;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+.responsiv input{
+    display:block;
+}
+
+@media (min-width: 431px){
+
+    section .profile .content .form
+    {
+        display: flex;
+        flex-direction: column;
+        width: 53rem;
+    }
+
+}
+
+@media (max-width: 430px){
+
+    nav{
+        z-index:2;
+    }
+
+    main{
+        margin-left:0rem;
+        height: 62rem;
+    }
+
+    section{
+        height:50rem;
+        margin-top: 4rem;
+    }
+
+    .profile{
+        height: 62rem;
+        width: 24rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 7rem;
+    }
+
+    .content{
+        height:45rem;
+    }
+
+    form{
+        margin-top:4rem;
+    }
+
+    .flexbox{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .inputBox Button{
+        margin-top:4rem;
+    }
+
+
+
+    .responsiv{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .responsiv label{
+        display:block;
+    }
+
+    .responsiv input{
+        z-index:0;
+    }
+
+}
+
+
+
 
 /* CIRCULAIR PHOTO */
 
@@ -224,16 +365,15 @@ input[type="submit"]:active
     width: 100px;
     position: relative;
     margin: auto;
-  }
-  
-  .upload img{
+}
+
+.upload img{
     border-radius: 50%;
-    /* border: 6px solid #eaeaea; */
     box-shadow: 0 2px 23px rgba(0,0,0,3);
 
-  }
-  
-  .upload .round{
+}
+
+.upload .round{
     position: absolute;
     bottom: 0;
     right: 0;
@@ -245,19 +385,19 @@ input[type="submit"]:active
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid #aaa;
-  }
-  
-  .upload .round input[type = "file"]{
+}
+
+.upload .round input[type = "file"]{
     position: absolute;
     transform: scale(2);
     opacity: 0;
-  }
-  
-  input[type=file]::-webkit-file-upload-button{
-      cursor: pointer;
-  }
+}
 
-  .links{
+input[type=file]::-webkit-file-upload-button{
+    cursor: pointer;
+}
+
+.links{
     display: flex;
     justify-content: center;
     text-decoration: underline;
@@ -268,13 +408,17 @@ input[type="submit"]:active
     display:flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; 
-    margin-bottom: 1.2rem;
+    width: 100%;
+}
+
+@media (min-width: 431px){
+
+    .flexbox{
+        margin-bottom: 1.2rem;
+
+    }
+
 }
 
 
-.saveAccount{
-  display: flex;
-  justify-content: center;
-  margin-top:4rem;
-}
+

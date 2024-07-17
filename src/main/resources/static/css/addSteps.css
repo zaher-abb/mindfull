@@ -14,6 +14,7 @@ body{
     background: #dfe9f5;
 }
 
+
 .head-nav{
     width:100%;
     height: 4rem;
@@ -33,28 +34,18 @@ body{
     margin:0;
 }
 
-nav{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    height:100%;
-    background:#fff;
-    width:90px;
-    overflow:hidden;
-    transition:width 0.2s linear;
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 ul{
     flex-direction: column;
-    justify-content: space-evenly;
     display: flex;
-    height: 80%;
+    height: 100%;
+    justify-content: space-around;
 }
+
+
+a.active .material-symbols-outlined {
+    color: #8D6CFA;
+}
+
 
 a{
     position:relative;
@@ -81,34 +72,132 @@ a{
     margin-left:10px;
 }
 
-a:hover{
-    background:#eee;
+
+@media (min-width: 431px){
+    nav{
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        height:100%;
+        background:#fff;
+        width:6rem;
+        overflow:hidden;
+        transition:width 0.2s linear;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    li.active{
+        border-right: 5px solid #8D6CFA;
+    }
+}
+
+
+@media (max-width: 430px) {
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        /* display: flex;
+        flex-direction: column;
+        min-height: 100vh; */
+        padding-bottom: 4rem;
+    }
+
+    .head-nav{
+        width:100%;
+        height: 4rem;
+        background: #FFFFFF;
+    }
+
+    nav {
+        background: #FFFFFF;
+        position: fixed;
+        width: 100%;
+        height:4rem;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        align-items: center;
+        bottom: 0;
+        left: 0;
+    }
+
+    nav ul {
+        display: flex;
+        /* justify-content: flex-end;  */
+        flex-direction: row;
+        width:100%
+    }
+
+
+    nav ul li {
+        display: flex;
+        width:8rem;
+        justify-content: center;
+
+    }
+
+    nav ul li a {
+        color: #333;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li a .material-symbols-outlined {
+        font-size: 24px;
+    }
+
+    li.active{
+        border-top: 5px solid #8D6CFA;
+    }
+
 }
 
 /* Form Section */
+
+main{
+    margin-left:6rem;
+}
+
 .add-steps {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 4rem);
     padding: 2rem;
-    background: #f9fafc;
 }
+
 
 .form-container {
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    width: 85rem;
+    height:40rem;
     text-align: center;
 }
 
 .form-container h2 {
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     color: #333;
+}
+
+.form-container p {
+    text-align:start;
+}
+
+
+form{
+    margin-top:5rem;
 }
 
 .inputBox {
@@ -118,8 +207,10 @@ a:hover{
 .inputBox label {
     display: block;
     margin-bottom: 0.5rem;
-    font-weight: 500;
+    font-weight: 600;
     color: #555;
+    text-align: start;
+    margin-top:2rem;
 }
 
 .inputBox input {
@@ -142,6 +233,7 @@ a:hover{
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
+    margin-top:4rem;
 }
 
 .inputBox button:hover {
@@ -149,17 +241,50 @@ a:hover{
 }
 
 .shoes {
-    margin-top: 2rem;
-    text-align: center;
+    display:flex;
 }
 
-.shoes img {
-    width: 100px;
-    height: auto;
+.shoes img{
+    height: 80%;
 }
 
-@media (max-width: 768px) {
-    .form-container {
-        padding: 1rem;
+
+.flexbox{
+    display:flex;
+    justify-content: space-around;
+}
+
+@media (max-width: 430px){
+
+    main{
+        margin-left:0rem;
+    }
+    .shoes img{
+        display:none;
+    }
+
+    .add-steps{
+        height:100%;
+    }
+
+    .form-container{
+        height:45rem;
+    }
+
+    form{
+        margin-top:4rem;
+    }
+
+    .inputBox Button{
+        margin-top:4rem;
+    }
+
+    .form-container h2 {
+        text-align:start;
+        font-size: 1.1rem;
+        width:100%;
     }
 }
+
+
+

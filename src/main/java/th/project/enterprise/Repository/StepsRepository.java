@@ -2,9 +2,11 @@ package th.project.enterprise.Repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import th.project.enterprise.Entity.StepsSummaryDTO;
 import th.project.enterprise.Entity.RankDTO;
 import th.project.enterprise.Entity.Steps;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface StepsRepository extends CrudRepository<Steps, Long> {
@@ -30,6 +32,14 @@ public interface StepsRepository extends CrudRepository<Steps, Long> {
             " GROUP BY u.firstName, u.lastName , u.Email , u.teamName "+
             " order by SUM(s.steps_number) DESC")
    List<RankDTO> getAllMemberStepsSum();
+
+    @Query("SELECT SUM(s.steps_number) FROM Steps s WHERE s.user.id = :userId AND s.date = :date")
+    Long getStepsSumForDay(Long userId, LocalDate date);
+
+    @Query("SELECT SUM(s.steps_number) FROM Steps s WHERE s.user.id = :userId AND s.date >= :startDate AND s.date < :endDate")
+    Long getStepsSumForPeriod(Long userId, LocalDate startDate, LocalDate endDate);
+
+
 }
 
 
