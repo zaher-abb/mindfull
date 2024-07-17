@@ -36,7 +36,7 @@
 <main>
     <div class="add-steps">
         <div class="form-container">
-            <h2>Team Rank </h2>
+            <h2>Admin Dashboard</h2>
             <div class="multi-button flexbox-buttons">
                 <div><button  id="teilnehmerButton" class="multi-button_button tag active" onclick="toggleTable('teilnehmer')" >Teilnehmer</button></div>
                 <div><button id="monatButton" class="multi-button_button monat"  onclick="toggleTable('gerichte')">Gerichte</button></div>
@@ -44,20 +44,19 @@
             <table id="teamRankTable" style="display: table;">
                 <thead>
                 <tr>
-                    <th>Teams Name</th>
                     <th>Rank</th>
-                    <th>Anzahl an Teams</th>
+                    <th>Teams Name</th>
                     <th>Anzahl der Schritte</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <tr th:each="u, stat : ${users}">
-                    <td><span th:text="${stat.index + 1}">Potsdam</span></td>
-                    <td><span th:text="${u.memberEmail}">1</span></td>
-                    <td><span th:text="${u.memberName}">35</span></td>
-                    <td><span th:text="${u.stepsSum}">50.000</span></td>
+                <tr th:each="u, stat : ${team}">
+                    <td><span th:text="${stat.index + 1}"></span></td>
+                    <td><span th:text="${u.teamName}"></span></td>
+                    <td><span th:text="${u.stepsSumFormatted}"></span></td>
                 </tr>
+
                 </tbody>
             </table>
 
@@ -65,8 +64,9 @@
             <table id="teamsMitglieder" style="display: none;">
                 <thead>
                 <tr>
-                    <th>Name</th>
                     <th>Rank</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Team</th>
                     <th>Anzahl der Schritte</th>
                 </tr>
@@ -74,10 +74,11 @@
                 <tbody>
 
                 <tr th:each="u, stat : ${users}">
-                    <td><span th:text="${stat.index + 1}">Salma Alzoubi</span></td>
-                    <td><span th:text="${u.memberEmail}">1</span></td>
-                    <td><span th:text="${u.memberName}">Potsdam</span></td>
-                    <td><span th:text="${u.stepsSum}">50.000</span></td>
+                    <td><span th:text="${stat.index + 1}"></span></td>
+                    <td><span th:text="${u.memberName}"></span></td>
+                    <td><span th:text="${u.memberEmail}"></span></td>
+                    <td><span th:text="${u.teamName}"></span></td>
+                    <td><span th:text="${u.stepsSumFormatted}"></span></td>
                 </tr>
                 </tbody>
             </table>

@@ -23,8 +23,8 @@ public class StepsService {
         return stepsRepository.getStepsSumByTeam();
     }
 
-    public List<RankDTO> getStepsSumByUserInTeam(String teamName) {
-        return stepsRepository.getStepsSumByUserInTeam(teamName);
+    public List<RankDTO> getAllMemberStepsSum() {
+        return stepsRepository.getAllMemberStepsSum();
     }
 
 }

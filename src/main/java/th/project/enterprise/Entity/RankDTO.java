@@ -19,15 +19,16 @@ public class RankDTO {
     private  User user;
     private int rank;
     private boolean isVisuable;
-
+    private String stepsSumFormatted;
     public RankDTO(long stepsSum,String teamName){
         this.teamName=teamName;
         this.stepsSum = stepsSum;
 
         this.isVisuable= false;
     }
-    public RankDTO(String firstName, String lastName,  long stepsSum, String memberEmail){
+    public RankDTO(String firstName, String lastName,  long stepsSum, String memberEmail, String teamName){
         this.memberName = firstName + " " + lastName;
+        this.teamName=teamName;
         this.stepsSum = stepsSum;
         this.memberEmail = memberEmail;
         this.isVisuable= false;

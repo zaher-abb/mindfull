@@ -103,6 +103,9 @@ public class UserController {
 
     @GetMapping("/allTeamsRank")
     public String allTeamsRank(Model model, Principal principal, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            return "redirect:/User/adminDashboard";
+        }
         List<RankDTO> teamRankList = stepsService.getStepsSumByTeam();
 
         User user1 = userService.findByEmail(principal.getName());
@@ -114,29 +117,28 @@ public class UserController {
         }
 
         model.addAttribute("steps", teamRankList);
-        if (request.isUserInRole("ROLE_ADMIN")) {
-            return "admin_dashboard";
-        }
+
         return "dashboard";
     }
 
-    @GetMapping("/memberRankInTeam")
-    public String memberRankInTeam(Model model, Principal principal) {
-
-        User user1 = userService.findByEmail(principal.getName());
-
-        String user1Team = user1.getTeamName();
-        String user1Email = user1.getEmail();
-        List<RankDTO> teamRankList = stepsService.getStepsSumByUserInTeam(user1Team);
-
+    @GetMapping("/adminDashboard")
+    public String AdminDashoboard(Model model, Principal principal) {
+        List<RankDTO> teamRankList = stepsService.getStepsSumByTeam();
         for (RankDTO rankDTO : teamRankList) {
-            System.out.println(rankDTO.toString());
-            if (rankDTO.getMemberEmail().equals(user1Email)) {
-                rankDTO.setVisuable(true);
-            }
+            long stepsSum = rankDTO.getStepsSum();
+            String formattedStepsSum = String.format("%,d", stepsSum);
+            rankDTO.setStepsSumFormatted(formattedStepsSum);
         }
 
-        model.addAttribute("users", teamRankList);
+        List<RankDTO> allMemberRank = stepsService.getAllMemberStepsSum();
+        for (RankDTO rankDTO : allMemberRank) {
+            long stepsSum = rankDTO.getStepsSum();
+            String formattedStepsSum = String.format("%,d", stepsSum);
+            rankDTO.setStepsSumFormatted(formattedStepsSum);
+        }
+
+        model.addAttribute("team", teamRankList);
+        model.addAttribute("users", allMemberRank);
         return "team_dashboard";
     }
 

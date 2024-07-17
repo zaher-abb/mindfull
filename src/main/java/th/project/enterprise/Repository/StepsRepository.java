@@ -24,13 +24,12 @@ public interface StepsRepository extends CrudRepository<Steps, Long> {
             "ORDER BY SUM(s.steps_number) DESC")
     List<RankDTO> getStepsSumByTeam();
 
-    @Query("SELECT new th.project.enterprise.Entity.RankDTO(u.firstName, u.lastName, SUM(s.steps_number), u.Email )" +
+    @Query("SELECT new th.project.enterprise.Entity.RankDTO(u.firstName, u.lastName, SUM(s.steps_number), u.Email, u.teamName)" +
             "FROM Steps s " +
             "JOIN s.user u " +
-            "WHERE u.teamName =:teamName" +
-            " GROUP BY u.firstName, u.lastName , u.Email " +
+            " GROUP BY u.firstName, u.lastName , u.Email , u.teamName "+
             " order by SUM(s.steps_number) DESC")
-   List<RankDTO> getStepsSumByUserInTeam(String teamName);
+   List<RankDTO> getAllMemberStepsSum();
 }
 
 
