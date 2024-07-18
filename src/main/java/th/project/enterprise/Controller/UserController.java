@@ -199,7 +199,7 @@ public class UserController {
             String uploadDir = rootDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "images";
 
             FileUploader.saveFile(uploadDir, fileName, image);
-            user1.setFirstName("test");
+            user1.setFirstName(user.getFirstName());
             user1.setLastName(user.getLastName());
             user1.setPassword(user.getPassword());
             user1.setTeamName(user.getTeamName());
