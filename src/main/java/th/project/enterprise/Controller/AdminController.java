@@ -54,8 +54,7 @@ public class AdminController {
         userService.creatUser(user);
         model.addAttribute("success", true);
         try {
-
-            //        emailService.registrationConfirmationEmail(user);
+            emailService.registrationConfirmationEmail(user);
         } catch (MailException ignored) {
 
         }

@@ -14,6 +14,7 @@ body{
     background: #dfe9f5;
 }
 
+
 .head-nav{
     width:100%;
     height: 4rem;
@@ -33,28 +34,18 @@ body{
     margin:0;
 }
 
-nav{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    height:100%;
-    background:#fff;
-    width:90px;
-    overflow:hidden;
-    transition:width 0.2s linear;
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 ul{
     flex-direction: column;
-    justify-content: space-evenly;
     display: flex;
-    height: 80%;
+    height: 100%;
+    justify-content: space-around;
 }
+
+
+a.active .material-symbols-outlined {
+    color: #8D6CFA;
+}
+
 
 a{
     position:relative;
@@ -81,31 +72,124 @@ a{
     margin-left:10px;
 }
 
-a:hover{
-    background:#eee;
+
+@media (min-width: 431px){
+    nav{
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        height:100%;
+        background:#fff;
+        width:6rem;
+        overflow:hidden;
+        transition:width 0.2s linear;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    li.active{
+        border-right: 5px solid #8D6CFA;
+    }
+}
+
+
+@media (max-width: 430px) {
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        padding-bottom: 4rem;
+    }
+
+    .head-nav{
+        width:100%;
+        height: 4rem;
+        background: #FFFFFF;
+    }
+
+    nav {
+        background: #FFFFFF;
+        position: fixed;
+        width: 100%;
+        height:4rem;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        align-items: center;
+        bottom: 0;
+        left: 0;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        width:100%
+    }
+
+
+    nav ul li {
+        display: flex;
+        width:8rem;
+        justify-content: center;
+
+    }
+
+    nav ul li a {
+        color: #333;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li a .material-symbols-outlined {
+        font-size: 24px;
+    }
+
+    li.active{
+        border-top: 5px solid #8D6CFA;
+    }
+
 }
 
 /* Form Section */
-.add-steps {
+
+main{
+    margin-left:6rem;
+}
+
+section {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: calc(100vh - 4rem); */
     padding: 2rem;
 }
 
-.form-container {
+.profile {
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 72rem;
-    /* max-width: 400px; */
+    width: 85rem;
+    height:45rem;
     text-align: center;
 }
 
-.form-container h2 {
-    margin-bottom: 1.5rem;
+.add-steps {
+    width: 100%;
+    height:100%;
+    padding:3rem;
+    gap: 40px;
+}
+
+.diagram h2 {
+    display:flex;
+    margin-bottom: 2.5rem;
+    align-items: start;
     font-size: 1.5rem;
     color: #333;
 }
@@ -182,20 +266,72 @@ a:hover{
     align-items: center;
 }
 
-@media (max-width: 768px) {
-    .form-container {
-        padding: 1rem;
+
+@media (max-width: 430px){
+
+    nav{
+        z-index:2;
     }
+
+    main{
+        margin-left:0rem;
+        height: 62rem;
+    }
+
+    section{
+        height:50rem;
+        margin-top: 4rem;
+    }
+
+    .add-steps{
+        padding:0rem;
+    }
+
+    .profile{
+        height: 62rem;
+        width: 24rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 7rem;
+    }
+
+    .content{
+        height:45rem;
+    }
+
+    form{
+        margin-top:4rem;
+    }
+
+    .diagram{
+        width:100%;
+    }
+
+    .diagram h2{
+        font-size:1.2rem;
+        text-align: center;
+    }
+
+    .flexbox{
+        display:flex;
+        flex-direction: column;
+    }
+
+
 }
+
+
+
 
 /* CSS BUTTON GROUPS */
 
 
 .multi-button{
     margin-bottom: 3rem;
-  }
-  
-  .multi-button_button{
+}
+
+.multi-button_button{
     font-family:"Popping",sans-serif;
     font-size: 15px;
     /* border: none; */
@@ -204,79 +340,80 @@ a:hover{
     color: black;
     /* transition: background 0.2s ease-in-out; */
     /* box-shadow: 0 5px 10px #11111150;  */
-  }
+}
 
-  .flexbox-buttons{
+.flexbox-buttons{
     display:flex;
     justify-content: center;
-  }
-  
-  .multi-button_button:focus{
+    margin-bottom: 5rem;
+}
+
+.multi-button_button:focus{
     background-color: #8D6CFA;
-  }
-  
+}
 
-  .tag{
+
+.tag{
     border-radius: 5px 0 0 5px;
-    box-shadow: 4px 6px 8px #11111150; 
-  }
-
-  .woche{
     box-shadow: 4px 6px 8px #11111150;
-  }
-  
-  .monat{
+}
+
+.woche{
+    box-shadow: 4px 6px 8px #11111150;
+}
+
+.monat{
     border-radius: 0 5px 5px 0;
-    box-shadow: 4px 4px 6px #11111150; 
-  }
-  
-  /* .multi-button_button:first-child,
-  .multi-button_button:last-child{
-    transition: none;
-    position: relative;
-    overflow: hidden;
-  } */
-  
-  
-  .multi-button_button:first-child::after,
-  .multi-button_button:last-child::after{
+    box-shadow: 4px 4px 6px #11111150;
+}
+
+/* .multi-button_button:first-child,
+.multi-button_button:last-child{
+  transition: none;
+  position: relative;
+  overflow: hidden;
+} */
+
+
+.multi-button_button:first-child::after,
+.multi-button_button:last-child::after{
     content: "";
     position: absolute;
     height: 100%;
     width: 20%;
     background-color: var(--complement);
     top: 0;
-  }
-  
-  .multi-button_button:first-child::after{
+}
+
+.multi-button_button:first-child::after{
     right: -20%;
     border-radius: 50% 0 0 50%;
     transition: right ease-in-out 0.2s;
-  }
-  
-  .multi-button_button:last-child::after{
+}
+
+.multi-button_button:last-child::after{
     left: -20%;
     border-radius: 0 50% 50% 0;
     transition: left ease-in-out 0.2s;
-  }
-  
-  .multi-button_button:first-child:hover::after{
+}
+
+.multi-button_button:first-child:hover::after{
     right: 0;
-  }
-  
-  .multi-button_button:last-child:hover::after{
+}
+
+.multi-button_button:last-child:hover::after{
     left: 0;
-  }
+}
 
 /* CHAAART */
 
 .chart{
-    width: 600px;
-    height: 300px;
+    height: 25rem;
     display: block;
-  }
-  
-  .numbers{
+    margin-top:6rem;
+}
+
+.numbers{
     color: black;
     margin: 0;
     padding: 0;
@@ -284,24 +421,24 @@ a:hover{
     height: 100%;
     display: inline-block;
     /* float: left; */
-  }
-  
-  .numbers li{
+}
+
+.numbers li{
     list-style: none;
     height: 4rem;
     position: relative;
     bottom: 3rem;
-  }
-  
-  .numbers span{
+}
+
+.numbers span{
     font-size: 12px;
     font-weight: 600;
     position: absolute;
     bottom: 0;
     right: 10px;
-  }
-  
-  .bars{
+}
+
+.bars{
     color: black;
     font-size: 12px;
     font-weight: 600;
@@ -309,49 +446,81 @@ a:hover{
     padding: 0;
     display: inline-block;
     width: 500px;
-    height: 300px;
+    height: 25rem;
     border-left:black 1px solid;
     border-bottom:black 1px solid;
+}
 
-  }
-  
-  .bars li{
+.bars li{
     display: table-cell;
     width: 100px;
-    height: 300px;
+    height: 25rem;
     position: relative;
-  }
-  
-  .bars span{
+}
+
+.bars span{
     width: 100%;
     position: absolute;
     bottom: -30px;
     text-align: center;
-  }
-  
-  .bars .bar{
+}
+
+.bars .bar{
     display: block;
     background: #D9D9D9;
-    width: 1.7rem;
+    width: 2.7rem;
     position: absolute;
     bottom: 0;
-    margin-left: 20px;
+    margin-left: 5rem;
     text-align: center;
     transition: 0.5s;
     transition-property: background, box-shadow;
-  }
-  
-  .bars .bar:hover{
+}
+
+.bars .bar:hover{
     background: #55EFC4;
     box-shadow: 0 0 10px 0 rgba(85, 239, 196, 0.5);
     cursor: pointer;
-  }
-  
-  .bars .bar:before{
-    color: #fff;
-    content: attr(data-percentage) '%';
-    position: relative;
-    bottom: 20px;
-  }
+}
 
+.stepsImage{
+    display:flex;
+    margin-top:6rem;
+}
+.bar-value {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    margin-bottom: 5px;
+}
+
+
+@media (max-width: 430px){
+    .chart{
+        height: 0;
+        width: 0rem;
+        display: block;
+        margin-top: 6rem;
+    }
+
+    .bars{
+        width: 17rem;
+    }
+
+    .bars .bar {
+        margin-left: 4rem;
+    }
+
+    .stepsImage{
+        display:none;
+    }
+
+    .numbers{
+        width: 3.6rem;
+    }
+
+}
 

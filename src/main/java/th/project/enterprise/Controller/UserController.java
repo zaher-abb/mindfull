@@ -144,18 +144,21 @@ public class UserController {
     }
 
 
- //   @Scheduled(cron = "0 0/2 * * * ?")
+    //   @Scheduled(cron = "0 0/2 * * * ?")
     @Scheduled(cron = "0 0 0 * * ?")
     public void userEmailAlert() {
         LocalDate date = LocalDate.now();
         emailService.emailAlertToSubmitSteps(userService.getAllUsersWhoDoesNotSubmitSteps(date), date);
     }
 
-    @GetMapping("/test")
-    public void test(Principal principal) {
+    @GetMapping("/diagramm")
+    public String diagramm(Model model,Principal principal) {
         User user1 = userService.findByEmail(principal.getName());
 
-      StepsSummaryDTO dto = stepsService.getStepsSummaryForUser(user1.getId());
+        StepsSummaryDTO dto = stepsService.getStepsSummaryForUser(user1.getId());
+
+        model.addAttribute("steps", dto);
+        return "stepsDiagramm";
     }
 
     @GetMapping("/showUpdateProfileForm")
@@ -188,8 +191,7 @@ public class UserController {
         if (image.getSize() > maxFileSize) {
             redirectAttributes.addFlashAttribute("message", "File size should not exceed 10MB");
             return "redirect:/User/showUpdateProfileForm";
-        }
-        else {
+        } else {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
             user1.setProfilePictureUrl("/images/" + fileName);
 
@@ -210,7 +212,7 @@ public class UserController {
     }
 
     @GetMapping("/showProfileDetails")
-    public String showProfileDetails(Model model,Principal principal) {
+    public String showProfileDetails(Model model, Principal principal) {
         User user1 = userService.findByEmail(principal.getName());
         model.addAttribute("user", user1);
 

@@ -9,6 +9,7 @@ import th.project.enterprise.Repository.StepsRepository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -34,26 +35,17 @@ public class StepsService {
         LocalDate yesterday = now.minusDays(1);
         LocalDate oneWeekAgo = now.minusWeeks(1);
         LocalDate oneMonthAgo = now.minusMonths(1);
-        Long dailyStepsSum;
-        try {
-            dailyStepsSum = stepsRepository.getStepsSumForDay(userId, yesterday);
-        } catch (Exception e) {
-            dailyStepsSum = 0L;
-        }
-        Long weeklyStepsSum;
-        try {
-            weeklyStepsSum = stepsRepository.getStepsSumForPeriod(userId, oneWeekAgo, now);
-        } catch (Exception e) {
-            weeklyStepsSum = 0L;
-        }
+        Long dailyStepsSum = (Optional.ofNullable(stepsRepository.getStepsSumForDay(userId, yesterday)).orElse(0L) / 300000) * 100;
+        Long dailyStepsSumPercentage = Math.round(((double) dailyStepsSum / 300000) * 100);
 
-        Long monthlyStepsSum;
-        try {
-            monthlyStepsSum = stepsRepository.getStepsSumForPeriod(userId, oneMonthAgo, now);
-        } catch (Exception e) {
-            monthlyStepsSum = 0L;
-        }
-        return new StepsSummaryDTO(dailyStepsSum, weeklyStepsSum, monthlyStepsSum);
+        Long weeklyStepsSum = Optional.ofNullable(stepsRepository.getStepsSumForPeriod(userId, oneWeekAgo, now)).orElse(0L);
+        Long weeklyStepsPercentage = Math.round(((double) weeklyStepsSum / 300000) * 100);
+
+        Long monthlyStepsSum = Optional.ofNullable(stepsRepository.getStepsSumForPeriod(userId, oneMonthAgo, now)).orElse(0L);
+
+        Long monthStepsPercentage = Math.round(((double) monthlyStepsSum / 300000) * 100);
+
+        return new StepsSummaryDTO(dailyStepsSum,weeklyStepsSum,monthlyStepsSum ,dailyStepsSumPercentage ,weeklyStepsPercentage, monthStepsPercentage);
     }
 
 }

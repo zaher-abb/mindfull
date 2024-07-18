@@ -3,44 +3,67 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta name="description" content="Webpage description goes here" />
-    <title>MindfulMinutes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="">
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const navLinks = document.querySelectorAll('nav a');
+        const borderLinks = document.querySelectorAll('nav li');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        borderLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                borderLinks.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+    });
+</script>
 </head>
 <body>
-<div class="head-nav">
-    <div class="logo">
-        <img class="logo-img" src="/images/logo.png" title="logo" href="index.html">
+    <div class="head-nav">
+        <div class="logo">
+            <img class="logo-img" src="/images/logo.png" title="logo" href="/index.html">
+        </div>
     </div>
-</div>
-<nav>
-    <ul>
-        <li><a th:href="@{/Steps/addSteps}">
-            <span class="material-symbols-outlined">
-                home
-            </span>
-        </a></li>
-        <li><a href="#">
-            <span class="material-symbols-outlined">
-                equalizer
-            </span>
-        </a></li>
-        <li><a th:href="@{/User/allTeamsRank}">
-            <span class="material-symbols-outlined">
-                flag
-            </span>
-        </a></li>
-        <li><a th:href="@{/User/showUpdateProfileForm}">
-            <span class="material-symbols-outlined">
-                person
-            </span>
-        </a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a th:href="@{/Steps/addSteps}">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </a></li>
+            <li><a th:href="@{/User/diagramm}">
+                <span class="material-symbols-outlined">
+                    equalizer
+                </span>
+            </a></li>
+            <li><a th:href="@{/User/allTeamsRank}">
+                <span class="material-symbols-outlined">
+                    flag
+                </span>
+            </a></li>
+            <li><a th:href="@{/User/showUpdateProfileForm}">
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+            </a></li>
+        </ul>
+    </nav>
 <main>
     <div class="add-steps">
         <div class="form-container">

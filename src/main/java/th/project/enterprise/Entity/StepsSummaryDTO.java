@@ -14,5 +14,8 @@ public class StepsSummaryDTO {
     private long dailyStepsSum;
     private long weeklyStepsSum;
     private long monthlyStepsSum;
+    private long dailyStepsSumPercentage;
+    private long weeklyStepsSumPercentage;
+    private long monthlyStepsSumPercentage;
 
 }
