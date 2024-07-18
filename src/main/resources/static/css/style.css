@@ -110,8 +110,9 @@ section .signin
   justify-content: center;
   align-items: center;
   padding: 40px;
-  border-radius: 4px;
-  box-shadow: 0 15px 35px rgba(0,0,0,3);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: -10rem;
 }
 section .signin .content
 {
@@ -231,8 +232,9 @@ section .signup
   align-items: center;
   padding: 40px;
   border-radius: 4px;
-  box-shadow: 0 15px 35px rgba(0,0,0,3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 section .signup .content
 {
   position: relative;

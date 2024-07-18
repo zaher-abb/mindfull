@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-*{
+ *{
     margin:0;
     padding:0;
     outline:none;
@@ -13,6 +13,7 @@
 body{
     background: #dfe9f5;
 }
+
 
 .head-nav{
     width:100%;
@@ -33,28 +34,18 @@ body{
     margin:0;
 }
 
-nav{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    height:100%;
-    background:#fff;
-    width:90px;
-    overflow:hidden;
-    transition:width 0.2s linear;
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 ul{
     flex-direction: column;
-    justify-content: space-evenly;
     display: flex;
-    height: 80%;
+    height: 100%;
+    justify-content: space-around;
 }
+
+
+a.active .material-symbols-outlined {
+    color: #8D6CFA;
+}
+
 
 a{
     position:relative;
@@ -81,42 +72,117 @@ a{
     margin-left:10px;
 }
 
-a:hover{
-    background:#eee;
+
+@media (min-width: 431px){
+    nav{
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        height:100%;
+        background:#fff;
+        width:6rem;
+        overflow:hidden;
+        transition:width 0.2s linear;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    li.active{
+        border-right: 5px solid #8D6CFA;
+    }
 }
 
-/* REGISTRATION PAGEE */
+
+@media (max-width: 430px) {
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    } 
+
+    body {
+        padding-bottom: 4rem;
+    }
+
+    .head-nav{
+        width:100%;
+        height: 4rem;
+        background: #FFFFFF;
+    }
+
+    nav {
+        background: #FFFFFF;
+        position: fixed;
+        width: 100%; 
+        height:4rem;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        align-items: center;
+        bottom: 0;
+        left: 0;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        width:100%
+    }
 
 
-section
+    nav ul li {
+        display: flex;
+        width:8rem;
+        justify-content: center;
+
+    }
+
+    nav ul li a {
+        color: #333;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li a .material-symbols-outlined {
+        font-size: 24px;
+    }
+
+    li.active{
+        border-top: 5px solid #8D6CFA;
+    }
+
+}
+
+/* PROFILE PAGEE */
+
+main{
+  margin-left:6rem;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+
+.profile {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 85rem;
+  height:45rem;
+  text-align: center;
+}
+
+section .profile .content 
 {
-    position: absolute;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    flex-wrap: wrap;
-}
-
-section .signup {
-    width: 93rem;
-    height: 34rem;
-    background: #FFFFFF;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    border-radius: 4px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 3);
-    margin-top:3rem;
-}
-
-section .signup .content 
-{
-  position: relative;
-  /* width: 100%; */
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,50 +191,59 @@ section .signup .content
 }
 
 
-section .signup .content h2 
+section .profile .content h1
 {
-  font-size: 1.2em;
+  font-size: 1.6rem;
+  text-align:start;
+  margin-top:4rem;
+  margin-bottom:2rem;
 }
 
-section .signup .content form 
-{
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  width: 50rem;
-}
-
-
-
-.flexbox{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%; 
-    margin-bottom: 1.2rem;
-}
-
-
-section .signup .content h2
-{
-  font-size: 1.2em;
-}
-section .signup .content .form
-{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-section .signup .content .form .inputBox
+section .content .form .flexbox .inputBox input,  section .profile .content .form .flexbox .inputBox select
 {
   position: relative;
-  /* width: 100%; */
+  width: 18rem;
+  background: #FFFFFF;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-weight: 500;
+  height: 2.5rem;
 }
 
-section .signup .content .form .inputBox input
-{
+
+select{
+    display:flex;
+    position: relative;
+    width: 18rem;
+    background: #FFFFFF;
+    outline: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-weight: 500;
+    height: 2.5rem;
+}
+
+.select{
+    margin-top:3rem;
+}
+
+
+.inputBox label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+  text-align: start;
+  margin-top:2rem;
+}
+
+
+.inputBox-Password{
     position: relative;
     width: 18rem;
     background: #FFFFFF;
@@ -179,38 +254,11 @@ section .signup .content .form .inputBox input
     color: black;
     font-weight: 500;
     font-size: 1em;
-}
-
-.inputSelect{
-
-    width:37%;
-
-}
-
-section .signup .content .form .inputBox select{
-    position: relative;
-    width: 18rem;
-    background: #FFFFFF;
-    outline: none;
-    border-radius: 5px;
-    padding: 25px 10px 7.5px;
-    border-color: black;
-    color: black;
-    font-weight: 500;
-    font-size: 1em;
-}
-
-
-
-
-.inputBorder{
     border: 1px solid black;
     border-radius: 5px;
 }
 
-
-
-section .signup .content .form .inputBox i
+section .profile .content .form .inputBox i 
 {
   position: absolute;
   left: 0;
@@ -221,19 +269,10 @@ section .signup .content .form .inputBox i
   pointer-events: none;
 }
 
-.signup .content .form .inputBox input[type="submit"]
-{
-  padding: 10px;
-  background: #8D6CFA;
-  color: #eee;
-  font-weight: 600;
-  font-size: 1.35em;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-}
 
 .links{
-    display: flex;
+  display: flex;
+  margin-top: 1rem;
 }
 
 .create, .links{
@@ -243,10 +282,165 @@ section .signup .content .form .inputBox i
 input[type="submit"]:active
 {
   opacity: 0.6;
+} 
+
+.saveAccount{
+  display: flex;
+  justify-content: center;
+  margin-top:5rem;
 }
 
-.createAccount{
+.saveAccount input{
+  width: 18rem;
+  outline: none;
+  border-radius: 4px;
+  height: 2.5rem;
+  padding: 0.1rem;
+  background: #8D6CFA;
+  color: #eee;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.responsiv input{
+  display:block;
+} 
+
+@media (min-width: 431px){
+
+  section .profile .content .form 
+  {
+    display: flex;
+    flex-direction: column;
+    width: 53rem;
+  }
+  
+}
+
+@media (max-width: 430px){
+
+  nav{
+    z-index:2;
+  }
+
+  main{
+      margin-left:0rem;
+      height: 62rem;
+  }
+
+  section{
+      height:50rem;
+      margin-top: 4rem;
+  }
+
+  .profile{
+    height: 62rem;
+    width: 24rem;
     display: flex;
     justify-content: center;
-    margin-top:4rem;
+    align-items: center;
+    margin-top: 7rem;
+  }
+
+  .content{
+    height:45rem;
+  }
+
+  form{
+      margin-top:4rem;
+  }
+
+  .flexbox{
+    display:flex;
+    flex-direction: column;
+  }
+
+  .inputBox Button{
+      margin-top:4rem;
+  }
+
+ 
+
+  .responsiv{
+    display:flex;
+    flex-direction: column;
+  }
+
+  .responsiv label{
+    display:block;
+  }
+
+  .responsiv input{
+    z-index:0;
+  }
+
 }
+
+
+
+
+/* CIRCULAIR PHOTO */
+
+.upload{
+    width: 100px;
+    position: relative;
+    margin: auto;
+  }
+  
+  .upload img{
+    border-radius: 50%;
+    box-shadow: 0 2px 23px rgba(0,0,0,3);
+
+  }
+  
+  .upload .round{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: white;
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #aaa;
+  }
+  
+  .upload .round input[type = "file"]{
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+  }
+  
+  input[type=file]::-webkit-file-upload-button{
+      cursor: pointer;
+  }
+
+  .links{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+}
+
+
+.flexbox{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+}
+
+@media (min-width: 431px){
+
+  .flexbox{
+    margin-bottom: 1.2rem;
+
+  }
+
+}
+
+
+

@@ -1,106 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="description" content="Webpage description goes here" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="">
-  <link rel="stylesheet" href="/css/signup.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <meta name="description" content="Webpage description goes here" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const navLinks = document.querySelectorAll('nav a');
+            const borderLinks = document.querySelectorAll('nav li');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            borderLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    borderLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+        });
+    </script>
 </head>
 
 <body>
 
-    <div class="head-nav">
-        <div class="logo">
-            <img class="logo-img" src="/images/logo.png" title="logo" href="/index.html">
-        </div>
+<div class="head-nav">
+    <div class="logo">
+        <img class="logo-img" src="/images/logo.png" title="logo" href="/index.html">
     </div>
-    <nav>
-        <ul>
-            <li><a th:href="@{/Steps/addSteps}">
-                <i class="fas fa-home"></i>
-            </a></li>
-            <li><a th:href="@{/User/diagramm}">
-                <i class="fas fa-bar-chart"></i>
-            </a></li>
-            <li><a th:href="@{/User/allTeamsRank}">
-                <i class="fas fa-flag"></i>
-            </a></li>
-            <li><a th:href="@{/User/showUpdateProfileForm}">
-                <i class="fas fa-user-circle"></i>
-            </a></li>
-        </ul>
-    </nav>
+</div>
+<nav>
+    <ul>
+        <li><a th:href="@{/Steps/addSteps}">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+        </a></li>
+        <li><a href="#">
+                <span class="material-symbols-outlined">
+                    equalizer
+                </span>
+        </a></li>
+        <li><a th:href="@{/User/allTeamsRank}">
+                <span class="material-symbols-outlined">
+                    flag
+                </span>
+        </a></li>
+        <li><a th:href="@{/User/showUpdateProfileForm}">
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+        </a></li>
+    </ul>
+</nav>
 
+<main>
     <section>
-        <div class="signup"> 
-            <div class="content"> 
-                <div class="form"> 
+        <div class="profile">
+            <div class="content">
+                <div class="form">
 
-                <form method="POST"  th:action="@{/User/register}"  th:object="${user}" >
-                    <h2>Create account</h2>
+                    <form method="POST"  th:action="@{/User/register}"  th:object="${user}" >
+                        <h1>Konto erstellen</h1>
 
 
-                    <div class="flexbox">
-                        <div class="inputBox inputBorder">
-                            <input type="text"   th:field="*{firstName}"  required placeholder="First Name">
+                        <div class="flexbox">
+                            <div class="inputBox inputBorder">
+                                <label>Vorname</label>
+                                <input type="text"   title="Vorname" th:field="*{firstName}"  required>
+                            </div>
+                            <div class="inputBox inputBorder">
+                                <label>Nachname</label>
+                                <input type="text" th:field="*{lastName}" title="Nachname" required>
+                            </div>
                         </div>
-                        <div class="inputBox inputBorder">
-                            <input type="text" th:field="*{lastName}" placeholder="Last Name" required>
+                        <div class="flexbox">
+                            <div class="inputBox inputBorder">
+                                <label>Email</label>
+                                <input type="text"  th:field="*{email}" required title="Email">
+                            </div>
+                            <div class="inputBox inputBorder">
+                                <label>Passwort</label>
+                                <input type="password" th:field="*{password}" title="Passwort" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flexbox">
-                        <div class="inputBox inputBorder">
-                            <input type="text"  th:field="*{email}" required placeholder="Email">
-                        </div> 
-                        <div class="inputBox inputBorder">
-                            <input type="password" th:field="*{password}" placeholder="Password" required>
+                        <div class="inputBox">
+                            <div class="inputBox select">
+                                <label>Gerichte</label>
+                                <select th:field="*{teamName}" required>
+                                    <option value="">Gerichte</option>
+                                    <option value="Bad Freienwalde">Bad Freienwalde</option>
+                                    <option value="Bernau">Bernau</option>
+                                    <option value="Brandenburg an der Havel">Brandenburg an der Havel</option>
+                                    <option value="Cottbus">Cottbus</option>
+                                    <option value="Eberswalde">Eberswalde</option>
+                                    <option value="Eisenhüttenstadt">Eisenhüttenstadt</option>
+                                    <option value="Elsterwerda">Elsterwerda</option>
+                                    <option value="Erkner">Erkner</option>
+                                    <option value="Frankfurt (Oder)">Frankfurt (Oder)</option>
+                                    <option value="Fürstenwalde/Spree">Fürstenwalde/Spree</option>
+                                    <option value="Gransee">Gransee</option>
+                                    <option value="Herzberg">Herzberg</option>
+                                    <option value="Königs Wusterhausen">Königs Wusterhausen</option>
+                                    <option value="Kyritz">Kyritz</option>
+                                    <option value="Luckenwalde">Luckenwalde</option>
+                                    <option value="Lübben (Spreewald)">Lübben (Spreewald)</option>
+                                    <option value="Nauen">Nauen</option>
+                                    <option value="Neuruppin">Neuruppin</option>
+                                    <option value="Oranienburg">Oranienburg</option>
+                                    <option value="Perleberg">Perleberg</option>
+                                    <option value="Potsdam">Potsdam</option>
+                                    <option value="Rathenow">Rathenow</option>
+                                    <option value="Senftenberg">Senftenberg</option>
+                                    <option value="Spremberg">Spremberg</option>
+                                    <option value="Strausberg">Strausberg</option>
+                                    <option value="Wittenberge">Wittenberge</option>
+                                    <option value="Zossen">Zossen</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            <tr> </tr>
+                            <div class="saveAccount">
+                                <input type="submit" value="Konto erstellen">
+                            </div>
                         </div>
-                    </div>
-                    <div class="inputBox">
-                        <div class="inputBox inputBorder inputSelect">
-                            <select th:field="*{teamName}" required>
-                                <option value="">Gerichte</option>
-                                <option value="Bad Freienwalde">Bad Freienwalde</option>
-                                <option value="Bernau">Bernau</option>
-                                <option value="Brandenburg an der Havel">Brandenburg an der Havel</option>
-                                <option value="Cottbus">Cottbus</option>
-                                <option value="Eberswalde">Eberswalde</option>
-                                <option value="Eisenhüttenstadt">Eisenhüttenstadt</option>
-                                <option value="Elsterwerda">Elsterwerda</option>
-                                <option value="Erkner">Erkner</option>
-                                <option value="Frankfurt (Oder)">Frankfurt (Oder)</option>
-                                <option value="Fürstenwalde/Spree">Fürstenwalde/Spree</option>
-                                <option value="Gransee">Gransee</option>
-                                <option value="Herzberg">Herzberg</option>
-                                <option value="Königs Wusterhausen">Königs Wusterhausen</option>
-                                <option value="Kyritz">Kyritz</option>
-                                <option value="Luckenwalde">Luckenwalde</option>
-                                <option value="Lübben (Spreewald)">Lübben (Spreewald)</option>
-                                <option value="Nauen">Nauen</option>
-                                <option value="Neuruppin">Neuruppin</option>
-                                <option value="Oranienburg">Oranienburg</option>
-                                <option value="Perleberg">Perleberg</option>
-                                <option value="Potsdam">Potsdam</option>
-                                <option value="Rathenow">Rathenow</option>
-                                <option value="Senftenberg">Senftenberg</option>
-                                <option value="Spremberg">Spremberg</option>
-                                <option value="Strausberg">Strausberg</option>
-                                <option value="Wittenberge">Wittenberge</option>
-                                <option value="Zossen">Zossen</option>
-                                <!-- Add more options as needed -->
-                            </select>
-                        </div>
-                        <tr> </tr>
-                    <div class="inputBox createAccount">
-                        <input type="submit" value="Create account"> 
-                    </div>
+                    </form>
                 </div>
-                </form>
-            </div> 
-           </div> 
-        </section>
+            </div>
+        </div>
+    </section>
+</main>
 
 </body>
 </html>

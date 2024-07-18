@@ -202,7 +202,22 @@ public class UserController {
             user1.setFirstName(user.getFirstName());
             user1.setLastName(user.getLastName());
             user1.setPassword(user.getPassword());
+            String teamName = user.getTeamName().toLowerCase();
+            if (teamService.chechTeamIsAlreadyExisted(teamName)) {
+                Team t = teamService.getTeamByName(teamName);
+                user.setTeamName(teamName);
+                user.setTeam(t);
+
+            } else {
+                teamService.addNewTeam(teamName);
+                Team t = teamService.getTeamByName(teamName);
+                user.setTeamName(teamName);
+                user.setTeam(t);
+            }
+
+            user1.setTeam(user.getTeam());
             user1.setTeamName(user.getTeamName());
+
             user1.setStepsTarget(user.getStepsTarget());
             userService.creatUser(user1);
             model.addAttribute("success", true);
