@@ -89,15 +89,18 @@
                             </ul>
                             <ul class="bars">
                                 <li>
-                                    <div class="bar" th:attr="data-percentage=${steps.getDailyStepsSumPercentage()}"></div>
+                                    <div class="bar" th:attr="data-percentage=${steps.getDailyStepsSumPercentage()}"
+                                         th:text="${steps.getDailyStepsSum()}"></div>
                                     <span>Gestern</span>
                                 </li>
                                 <li>
-                                    <div class="bar" th:attr="data-percentage=${steps.getWeeklyStepsSumPercentage()}"></div>
+                                    <div class="bar" th:attr="data-percentage=${steps.getWeeklyStepsSumPercentage()}"
+                                         th:text="${steps.getWeeklyStepsSum()}"></div>
                                     <span>Letzte Woche </span>
                                 </li>
                                 <li>
-                                    <div class="bar" th:attr="data-percentage=${steps.getMonthlyStepsSumPercentage()}"></div>
+                                    <div class="bar" th:attr="data-percentage=${steps.getMonthlyStepsSumPercentage()}"
+                                         th:text="${steps.getMonthlyStepsSum()}"></div>
                                     <span>letzte Monat</span>
                                 </li>
                             </ul>
