@@ -89,19 +89,19 @@
                             <div class="form">
                                 <div class="flexbox">
                                     <div class="inputBox inputBorder">
-                                        <label for="vorname">Vorname</label>
-                                        <input type="text" title="Vorname" required >
+                                        <label>Vorname</label>
+                                        <input type="text" th:field="*{firstName}" title="Vorname" required >
                                     </div>
                                     <div class="inputBox inputBorder">
-                                        <label for="nachname">Nachname</label>
-                                        <input type="text" title="Nachname" required>
+                                        <label>Nachname</label>
+                                        <input type="text" th:field="*{lastName}" title="Nachname" required>
                                     </div>
                                 </div>
                                 <div class="flexbox">
 
                                     <div class="inputBox">
                                         <div class="inputBox inputBorder">
-                                            <label for="team">Team</label>
+                                            <label>Team</label>
                                             <select  title ="name" th:field="*{teamName}" required>
                                                 <option value="">Gerichte</option>
                                                 <option value="Bad Freienwalde">Bad Freienwalde</option>

@@ -21,10 +21,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepoistory userRepoistory;
 
-//    @Autowired
-//    private TeamRepository teamRepository;
-//
-
 
     public void creatUser(User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

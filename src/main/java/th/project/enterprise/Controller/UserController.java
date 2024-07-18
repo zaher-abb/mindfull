@@ -197,16 +197,16 @@ public class UserController {
 
             String rootDir = System.getProperty("user.dir");
             String uploadDir = rootDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "images";
-//            String uploadDir = "C:\\Users\\zaher\\IntelliJ_EE_Projecte\\enterprise\\src\\main\\resources\\static\\images";
-            System.out.println(uploadDir);
+
             FileUploader.saveFile(uploadDir, fileName, image);
-            user1.setFirstName(user.getFirstName());
+            user1.setFirstName("test");
             user1.setLastName(user.getLastName());
             user1.setPassword(user.getPassword());
+            user1.setTeamName(user.getTeamName());
             user1.setStepsTarget(user.getStepsTarget());
             userService.creatUser(user1);
             model.addAttribute("success", true);
-
+            System.out.println("User updated successfully: " + user1);
             return "redirect:/User/showProfileDetails";
         }
     }
